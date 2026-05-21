@@ -21,7 +21,7 @@ export default function FAQ({ items }: FAQProps) {
             Frequently Asked <span className="gradient-text animate-glow-pulse">Questions</span>
           </h2>
           <p className="text-gray-400 text-lg animate-slide-up" style={{ animationDelay: "0.1s" }}>
-            Everything you need to know about RepMania
+            Everything you need to know about NexaFinds
           </p>
         </div>
 

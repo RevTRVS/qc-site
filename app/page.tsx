@@ -69,9 +69,9 @@ const FEATURED_PRODUCTS: Product[] = [
 const FAQ_ITEMS: FAQItem[] = [
   {
     id: 1,
-    question: "What is RepMania?",
+    question: "What is NexaFinds?",
     answer:
-      "RepMania is a curated discovery platform for finding trending products from global marketplaces like Taobao, Weidian, and verified agents.",
+      "NexaFinds is a curated discovery platform for finding trending products from global marketplaces like Taobao, Weidian, and verified agents.",
   },
   {
     id: 2,

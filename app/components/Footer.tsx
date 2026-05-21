@@ -59,7 +59,7 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4 animate-fade-in">
           <p className="text-gray-600 text-xs">
-            © 2026 RepMania. Contains affiliate links. Not affiliated with Taobao, Weidian, or their parent companies.
+            © 2026 NexaFinds. Contains affiliate links. Not affiliated with Taobao, Weidian, or their parent companies.
           </p>
           <div className="flex gap-6 text-xs text-gray-600">
             <a href="#" className="hover:text-green-400 transition-colors">

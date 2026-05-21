@@ -1,5 +1,7 @@
 import "./globals.css";
 import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
+import { AuthProvider } from "@/app/context/AuthContext";
+import { ThemeProvider } from "@/app/context/ThemeContext";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -24,7 +26,11 @@ export default function RootLayout({
         <meta name="theme-color" content="#000000" />
       </head>
       <body className={`${outfit.variable} ${jakarta.variable}`}>
-        {children}
+        <ThemeProvider>
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

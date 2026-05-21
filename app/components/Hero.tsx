@@ -8,7 +8,7 @@ export default function Hero() {
       <div className="max-w-4xl mx-auto relative z-10">
         <div className="inline-block mb-6 px-4 py-2 bg-green-500/20 rounded-full border border-green-500/40 backdrop-blur animate-slide-up">
           <span className="text-sm font-bold text-green-400 uppercase tracking-wider">
-            ✨ Welcome to RepMania
+            ✨ Welcome to NexaFinds
           </span>
         </div>
 
@@ -21,12 +21,18 @@ export default function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up" style={{ animationDelay: "0.3s" }}>
-          <a href="/products" className="btn-primary text-lg text-center">
-            Explore Now
-          </a>
-          <button className="btn-secondary text-lg">
-            View Calculator
-          </button>
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl blur-lg opacity-75 group-hover:opacity-100 transition duration-300 -z-10"></div>
+            <a href="/products" className="relative block px-8 py-4 bg-black rounded-xl text-lg font-black text-green-400 hover:text-white transition-all duration-300 border border-green-500/50 hover:border-green-400">
+              ✨ Explore Now
+            </a>
+          </div>
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/30 to-purple-500/30 rounded-2xl blur-lg opacity-50 group-hover:opacity-75 transition duration-300 -z-10"></div>
+            <button className="relative px-8 py-4 bg-black rounded-xl text-lg font-black text-gray-300 hover:text-white transition-all duration-300 border border-gray-500/30 hover:border-gray-400/60 hover:scale-105">
+              📊 View Calculator
+            </button>
+          </div>
         </div>
       </div>
     </section>
