@@ -21,9 +21,9 @@ export default function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up" style={{ animationDelay: "0.3s" }}>
-          <button className="btn-primary text-lg">
+          <a href="/products" className="btn-primary text-lg text-center">
             Explore Now
-          </button>
+          </a>
           <button className="btn-secondary text-lg">
             View Calculator
           </button>

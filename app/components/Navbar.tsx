@@ -28,9 +28,9 @@ export default function Navbar() {
 
         <nav className="hidden md:flex gap-8">
           {[
-            { label: "Home", href: "#" },
-            { label: "Products", href: "#" },
-            { label: "Tools", href: "#tools" },
+            { label: "Home", href: "/" },
+            { label: "Products", href: "/products" },
+            { label: "Tools", href: "/tools" },
             { label: "FAQ", href: "#" },
             { label: "Best Sellers", href: "#" },
           ].map((item) => (

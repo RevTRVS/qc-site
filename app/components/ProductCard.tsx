@@ -6,41 +6,57 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   return (
-    <div className="group rounded-2xl p-4 border border-white/10 hover:border-green-400/50 transition-all duration-300 hover:bg-white/5 hover:shadow-xl hover:shadow-green-500/10 hover:scale-105 glow-box animate-slide-up">
-      <div className="relative h-48 bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] rounded-xl mb-4 flex items-center justify-center overflow-hidden group">
+    <div className="group rounded-2xl overflow-hidden border-2 border-green-500/30 hover:border-green-400 transition-all duration-500 hover:shadow-2xl hover:shadow-green-500/30 hover:scale-105 glow-box animate-slide-up relative">
+      {/* Glowing background on hover */}
+      <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+      {/* Image container */}
+      <div className="relative h-48 bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] overflow-hidden">
         {product.image ? (
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            className="w-full h-full object-cover group-hover:scale-120 transition-transform duration-700"
           />
         ) : (
-          <div className="text-gray-600 text-sm">No image</div>
+          <div className="w-full h-full flex items-center justify-center text-gray-600 text-sm">No image</div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        {/* Overlay gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        
+        {/* Badge */}
+        <div className="absolute top-3 right-3 bg-gradient-to-r from-green-500 to-emerald-500 text-black px-3 py-1 rounded-full text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          ⭐ Featured
+        </div>
       </div>
 
-      <div className="space-y-2 mb-4">
-        <h3 className="font-black text-lg text-white group-hover:text-green-400 transition-colors duration-300">
-          {product.name}
-        </h3>
-        <p className="gradient-text font-bold text-2xl">
-          {product.currency}
-          {product.price}
-        </p>
-        {product.seller && (
-          <p className="text-gray-500 text-xs font-semibold uppercase tracking-wide">
-            via {product.seller}
+      {/* Content */}
+      <div className="p-4 relative z-10">
+        <div className="space-y-2 mb-4">
+          <h3 className="font-black text-lg text-white group-hover:text-green-400 transition-colors duration-300 line-clamp-2">
+            {product.name}
+          </h3>
+          <p className="bg-gradient-to-r from-green-400 via-emerald-400 to-green-500 bg-clip-text text-transparent font-bold text-2xl">
+            {product.currency}
+            {product.price}
           </p>
-        )}
+          {product.seller && (
+            <p className="text-green-500/70 text-xs font-semibold uppercase tracking-wider">
+              ✓ via {product.seller}
+            </p>
+          )}
+        </div>
+
+        <a
+          href="#"
+          className="w-full block text-center py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-500 text-black font-bold rounded-xl hover:from-green-400 hover:to-emerald-400 transition-all duration-300 hover:shadow-lg hover:shadow-green-500/50 active:scale-95"
+        >
+          View Product ↗
+        </a>
       </div>
 
-      <a
-        href={product.link || "#"}
-        className="w-full block text-center btn-primary font-bold"
-      >
-        View Product ↗
-      </a>
+      {/* Bottom accent line */}
+      <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-green-500 to-emerald-500 group-hover:w-full transition-all duration-500"></div>
     </div>
   );
 }
