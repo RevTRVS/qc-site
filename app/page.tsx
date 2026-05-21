@@ -1,65 +1,114 @@
-import Image from "next/image";
+import Navbar from "@/app/components/Navbar";
+import Hero from "@/app/components/Hero";
+import ProductGrid from "@/app/components/ProductGrid";
+import Tools from "@/app/components/Tools";
+import FAQ from "@/app/components/FAQ";
+import Footer from "@/app/components/Footer";
+import PopupAgent from "@/app/components/PopupAgent";
+import { Product, FAQItem } from "@/app/types";
+
+const FEATURED_PRODUCTS: Product[] = [
+  {
+    id: 1,
+    name: "Classic Sneakers",
+    price: 45,
+    currency: "€",
+    seller: "Taobao",
+  },
+  {
+    id: 2,
+    name: "Designer Watch",
+    price: 89,
+    currency: "€",
+    seller: "Weidian",
+  },
+  {
+    id: 3,
+    name: "Luxury Bag",
+    price: 125,
+    currency: "€",
+    seller: "Agent",
+  },
+  {
+    id: 4,
+    name: "Branded Shirt",
+    price: 35,
+    currency: "€",
+    seller: "Taobao",
+  },
+  {
+    id: 5,
+    name: "Premium Jacket",
+    price: 156,
+    currency: "€",
+    seller: "Weidian",
+  },
+  {
+    id: 6,
+    name: "Fashion Accessory",
+    price: 22,
+    currency: "€",
+    seller: "Agent",
+  },
+  {
+    id: 7,
+    name: "Elegant Belt",
+    price: 28,
+    currency: "€",
+    seller: "Taobao",
+  },
+  {
+    id: 8,
+    name: "Stylish Sunglasses",
+    price: 42,
+    currency: "€",
+    seller: "Weidian",
+  },
+];
+
+const FAQ_ITEMS: FAQItem[] = [
+  {
+    id: 1,
+    question: "What is RepMania?",
+    answer:
+      "RepMania is a curated discovery platform for finding trending products from global marketplaces like Taobao, Weidian, and verified agents.",
+  },
+  {
+    id: 2,
+    question: "Is it safe to buy through the agents?",
+    answer:
+      "Yes! We partner with trusted, verified agents. Always use secure payment methods and check seller ratings before purchasing.",
+  },
+  {
+    id: 3,
+    question: "How do affiliate links work?",
+    answer:
+      "When you purchase through our links, we may earn a small commission at no extra cost to you. This helps us maintain the platform.",
+  },
+  {
+    id: 4,
+    question: "How often are products updated?",
+    answer:
+      "Our product catalog is curated weekly to showcase the latest trending finds across all marketplaces.",
+  },
+  {
+    id: 5,
+    question: "Can I suggest products?",
+    answer:
+      "Absolutely! Join our Discord community to share product recommendations and connect with other enthusiasts.",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className="min-h-screen bg-black text-white">
+      <PopupAgent />
+      <Navbar />
+      <Hero />
+      <ProductGrid products={FEATURED_PRODUCTS} />
+      <Tools />
+      <FAQ items={FAQ_ITEMS} />
+      <Footer />
+    </main>
   );
 }
