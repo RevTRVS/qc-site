@@ -4,6 +4,7 @@ import { AuthProvider } from "@/app/context/AuthContext";
 import { ThemeProvider } from "@/app/context/ThemeContext";
 import { ToastProvider } from "@/app/context/ToastContext";
 import LocaleSetter from "@/app/components/LocaleSetter";
+import FloatingDiscordLink from "@/app/components/FloatingDiscordLink";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -32,6 +33,7 @@ export default function RootLayout({
           <ToastProvider>
             <AuthProvider>
               <LocaleSetter />
+              <FloatingDiscordLink />
               {children}
             </AuthProvider>
           </ToastProvider>

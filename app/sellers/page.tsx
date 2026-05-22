@@ -88,8 +88,6 @@ const SELLERS: Seller[] = [
 const CATEGORIES = [
   "Popular",
   "Sellers",
-  "Spreadsheets",
-  "Outfits",
 ];
 
 const BROWSE_CATEGORIES = [
@@ -178,21 +176,24 @@ export default function SellersPage() {
                   </div>
                 </div>
 
-                {/* Product Type Categories */}
+                {/* Product Type Categories - Removed clothing categories */}
                 <div>
                   <h4 className="text-xs font-bold text-gray-400 uppercase mb-3 tracking-wider">
-                    Products
+                    Featured
                   </h4>
                   <div className="space-y-2 max-h-64 overflow-y-auto pr-2">
-                    {BROWSE_CATEGORIES.map((category) => (
-                      <button
-                        key={category.name}
-                        className="w-full text-left px-3 py-2 rounded-lg text-gray-400 hover:text-green-400 transition-colors duration-300 font-semibold hover:bg-white/5 flex items-center gap-2"
-                      >
-                        <span>{category.icon}</span>
-                        {category.name}
-                      </button>
-                    ))}
+                    <button className="w-full text-left px-3 py-2 rounded-lg text-gray-400 hover:text-green-400 transition-colors duration-300 font-semibold hover:bg-white/5 flex items-center gap-2">
+                      <span>⭐</span>
+                      Top Rated Sellers
+                    </button>
+                    <button className="w-full text-left px-3 py-2 rounded-lg text-gray-400 hover:text-green-400 transition-colors duration-300 font-semibold hover:bg-white/5 flex items-center gap-2">
+                      <span>🔥</span>
+                      Trending Now
+                    </button>
+                    <button className="w-full text-left px-3 py-2 rounded-lg text-gray-400 hover:text-green-400 transition-colors duration-300 font-semibold hover:bg-white/5 flex items-center gap-2">
+                      <span>💰</span>
+                      Best Deals
+                    </button>
                   </div>
                 </div>
               </div>

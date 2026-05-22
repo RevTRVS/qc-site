@@ -33,12 +33,34 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const savedUser = localStorage.getItem("user");
     if (savedUser) {
       try {
-        setUser(JSON.parse(savedUser));
+        const parsedUser = JSON.parse(savedUser);
+        setUser(parsedUser);
         setIsLoggedIn(true);
       } catch (e) {
         localStorage.removeItem("user");
       }
     }
+    
+    // Listen for storage changes (e.g., from other tabs)
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === "user") {
+        if (e.newValue) {
+          try {
+            const user = JSON.parse(e.newValue);
+            setUser(user);
+            setIsLoggedIn(true);
+          } catch (err) {
+            console.error("Failed to parse user from storage event:", err);
+          }
+        } else {
+          setUser(null);
+          setIsLoggedIn(false);
+        }
+      }
+    };
+    
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
   const login = async (email: string, password: string) => {

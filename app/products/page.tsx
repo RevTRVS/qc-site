@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
+import CategoriesDropdown from "@/app/components/CategoriesDropdown";
 
 interface Product {
   id: string;

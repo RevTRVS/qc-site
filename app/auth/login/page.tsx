@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "@/app/context/AuthContext";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import GoogleSignInButton from "@/app/components/GoogleSignInButton";
+import GoogleOAuthButton from "@/app/components/GoogleOAuthButton";
 import { Suspense } from "react";
 
 declare global {
@@ -145,11 +145,8 @@ function LoginContent() {
 
           {/* OAuth Buttons */}
           <div className="space-y-3 mb-6">
-            {/* Google Sign-In Button */}
-            <GoogleSignInButton
-              clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ''}
-              onSuccess={handleGoogleResponse}
-            />
+            {/* Google OAuth Button */}
+            <GoogleOAuthButton />
 
             {/* Discord Button */}
             <button

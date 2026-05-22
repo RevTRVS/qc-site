@@ -1,5 +1,6 @@
 import Navbar from "@/app/components/Navbar";
 import Hero from "@/app/components/Hero";
+import PromoCarousel from "@/app/components/PromoCarousel";
 import ProductGrid from "@/app/components/ProductGrid";
 import FAQ from "@/app/components/FAQ";
 import Footer from "@/app/components/Footer";
@@ -7,13 +8,7 @@ import PopupAgent from "@/app/components/PopupAgent";
 import { Product, FAQItem } from "@/app/types";
 
 const FEATURED_PRODUCTS: Product[] = [
-  {
-    id: 1,
-    name: "Classic Sneakers",
-    price: 45,
-    currency: "€",
-    seller: "Taobao",
-  },
+
   {
     id: 2,
     name: "Designer Watch",
@@ -104,6 +99,9 @@ export default function Home() {
       <PopupAgent />
       <Navbar />
       <Hero />
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <PromoCarousel />
+      </section>
       <ProductGrid products={FEATURED_PRODUCTS} />
       <FAQ items={FAQ_ITEMS} />
       <Footer />

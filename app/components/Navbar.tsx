@@ -2,8 +2,8 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useAuth } from "@/app/context/AuthContext";
-import DiscordButton from "./DiscordButton";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -25,12 +25,23 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
         <Link href="/" className="group">
-          <h1 className="text-2xl font-black transition-all duration-300 hover:scale-105 text-white">
-            Nexa<span className="gradient-text group-hover:animate-glow-pulse">Finds</span>
-          </h1>
+          {/* Logo */}
+          <div className="flex items-center gap-2">
+            <Image 
+              src="/NexaFindsLogo.png" 
+              alt="NexaFinds Logo" 
+              width={40} 
+              height={40}
+              className="transition-all duration-300 hover:scale-105"
+              priority
+            />
+            <h1 className="text-2xl font-black transition-all duration-300 hover:scale-105 hidden sm:block text-white">
+              Nexa<span className="gradient-text">Finds</span>
+            </h1>
+          </div>
         </Link>
 
-        <nav className="hidden md:flex gap-8">
+        <nav className="hidden md:flex gap-4">
           {[
             { label: "Home", href: "/" },
             { label: "Products", href: "/products" },
@@ -41,16 +52,14 @@ export default function Navbar() {
             <Link
               key={item.label}
               href={item.href}
-              className="text-gray-400 hover:text-green-400 transition-colors duration-300 font-semibold relative group"
+              className="px-4 py-2.5 rounded-lg text-gray-300 hover:text-white bg-white/5 hover:bg-white/15 border border-green-500/20 hover:border-green-500/60 transition-all duration-300 font-bold text-sm hover:shadow-lg hover:shadow-green-500/20"
             >
               {item.label}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-green-400 to-emerald-400 group-hover:w-full transition-all duration-300"></span>
             </Link>
           ))}
         </nav>
 
         <div className="flex gap-3 items-center">
-          <DiscordButton />
           {isLoggedIn ? (
             <div className="relative" tabIndex={0}>
               <ProfileMenu user={user} onLogout={logout} />

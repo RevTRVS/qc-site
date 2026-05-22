@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/app/context/AuthContext";
 import { Suspense } from "react";
 
-function DiscordCallbackContent() {
+function GoogleCallbackContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { updateUser } = useAuth();
@@ -20,7 +20,7 @@ function DiscordCallbackContent() {
     }
 
     if (!userParam) {
-      router.replace("/auth/login?error=discord_missing_user");
+      router.replace("/auth/login?error=google_missing_user");
       return;
     }
 
@@ -39,7 +39,7 @@ function DiscordCallbackContent() {
         router.replace("/auth/login?error=invalid_user");
       }
     } catch (err) {
-      console.error("Discord callback error:", err);
+      console.error("Google callback error:", err);
       router.replace("/auth/login?error=invalid_user");
     }
   }, [router, searchParams, updateUser]);
@@ -48,13 +48,13 @@ function DiscordCallbackContent() {
     <div className="min-h-screen bg-black text-white flex items-center justify-center">
       <div className="text-center">
         <div className="w-16 h-16 border-4 border-green-500/20 border-t-green-500 rounded-full animate-spin mx-auto mb-4"></div>
-        <p className="text-gray-400">Connecting to Discord...</p>
+        <p className="text-gray-400">Connecting to Google...</p>
       </div>
     </div>
   );
 }
 
-export default function DiscordCallback() {
+export default function GoogleCallback() {
   return (
     <Suspense fallback={
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
@@ -64,7 +64,7 @@ export default function DiscordCallback() {
         </div>
       </div>
     }>
-      <DiscordCallbackContent />
+      <GoogleCallbackContent />
     </Suspense>
   );
 }
