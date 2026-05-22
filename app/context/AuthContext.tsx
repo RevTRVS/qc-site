@@ -8,6 +8,7 @@ interface User {
   username: string;
   avatar?: string;
   provider?: "google" | "discord" | "email";
+  language?: string;
 }
 
 interface AuthContextType {
@@ -89,7 +90,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const updateUser = (updates: Partial<User>) => {
     setUser((prev) => {
       const next = { ...(prev || {}), ...updates } as User;
-      localStorage.setItem("user", JSON.stringify(next));
+      try {
+        const serialized = JSON.stringify(next);
+        // Warn if data is getting large (localStorage limit is ~5-10MB)
+        if (serialized.length > 1000000) {
+          console.warn("User data is large (>1MB), may hit localStorage limits:", serialized.length, "bytes");
+        }
+        localStorage.setItem("user", serialized);
+        console.log("updateUser: saved to localStorage", { id: next.id, email: next.email, avatarSize: next.avatar ? next.avatar.length : 0 });
+      } catch (error) {
+        console.error("updateUser: Failed to save to localStorage", error);
+      }
       return next;
     });
     setIsLoggedIn(true);
@@ -118,6 +129,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const logout = () => {
+    if (!isLoggedIn) return; // Prevent logout if already logged out
     console.log("AuthContext: logout called - removing user from localStorage");
     setUser(null);
     setIsLoggedIn(false);

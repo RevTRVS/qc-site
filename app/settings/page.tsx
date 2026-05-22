@@ -3,10 +3,12 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "@/app/context/AuthContext";
 import { useToast } from "@/app/context/ToastContext";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
+import { Suspense } from "react";
 
-export default function SettingsPage() {
-  const { user, logout, updateUser } = useAuth();
+function SettingsContent() {
+  const { user, logout, updateUser, isLoggedIn } = useAuth();
+  const router = useRouter();
   const searchParams = useSearchParams();
   const initialTab = (searchParams.get("tab") as string) || "profile";
   const { showToast } = useToast();
@@ -15,13 +17,22 @@ export default function SettingsPage() {
   const [email, setEmail] = useState(user?.email || "");
   const [message, setMessage] = useState("");
   const [language, setLanguage] = useState(user?.language || "en");
+  const [avatarDataUrl, setAvatarDataUrl] = useState<string | undefined>(user?.avatar);
+
+  // Protect: redirect if logged out
+  useEffect(() => {
+    if (!user && !isLoggedIn) {
+      router.push("/auth/login");
+    }
+  }, [user, isLoggedIn, router]);
 
   useEffect(() => {
+    if (!user) return;
     setDisplayName(user?.username || "");
     setEmail(user?.email || "");
-  }, [user]);
-
-  const [avatarDataUrl, setAvatarDataUrl] = useState<string | undefined>(user?.avatar);
+    setLanguage(user?.language || "en");
+    setAvatarDataUrl(user?.avatar);
+  }, [user?.id]);
 
   const saveProfile = () => {
     try {
@@ -59,7 +70,7 @@ export default function SettingsPage() {
     reader.onload = () => {
       const img = new Image();
       img.onload = () => {
-        const max = 512;
+        const max = 256; // Reduced from 512 to avoid large dataURLs
         const canvas = document.createElement("canvas");
         let { width, height } = img;
         if (width > max || height > max) {
@@ -71,7 +82,9 @@ export default function SettingsPage() {
         canvas.height = height;
         const ctx = canvas.getContext("2d");
         if (ctx) ctx.drawImage(img, 0, 0, width, height);
-        const dataUrl = canvas.toDataURL("image/png");
+        // Use JPEG with compression instead of PNG for smaller filesize
+        const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
+        console.log("Avatar dataURL size:", dataUrl.length, "bytes");
         setAvatarDataUrl(dataUrl);
         setMessage("");
         showToast("Avatar updated", "success");
@@ -195,5 +208,19 @@ export default function SettingsPage() {
         </section>
       </div>
     </main>
+  );
+}
+
+export default function SettingsPage() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-screen bg-black text-white flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-gray-400">Loading settings...</p>
+        </div>
+      </main>
+    }>
+      <SettingsContent />
+    </Suspense>
   );
 }

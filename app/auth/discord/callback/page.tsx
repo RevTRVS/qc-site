@@ -2,8 +2,9 @@
 
 import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function DiscordCallback() {
+function DiscordCallbackContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -43,5 +44,20 @@ export default function DiscordCallback() {
         <p className="text-gray-400">Connecting to Discord...</p>
       </div>
     </div>
+  );
+}
+
+export default function DiscordCallback() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-green-500/20 border-t-green-500 rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-400">Loading...</p>
+        </div>
+      </div>
+    }>
+      <DiscordCallbackContent />
+    </Suspense>
   );
 }
