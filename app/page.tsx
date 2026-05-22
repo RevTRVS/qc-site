@@ -1,7 +1,6 @@
 import Navbar from "@/app/components/Navbar";
 import Hero from "@/app/components/Hero";
 import ProductGrid from "@/app/components/ProductGrid";
-import Tools from "@/app/components/Tools";
 import FAQ from "@/app/components/FAQ";
 import Footer from "@/app/components/Footer";
 import PopupAgent from "@/app/components/PopupAgent";
@@ -106,7 +105,6 @@ export default function Home() {
       <Navbar />
       <Hero />
       <ProductGrid products={FEATURED_PRODUCTS} />
-      <Tools />
       <FAQ items={FAQ_ITEMS} />
       <Footer />
     </main>

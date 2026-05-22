@@ -1,9 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import { useAuth } from '@/app/context/AuthContext';
 import Navbar from '@/app/components/Navbar';
 import Footer from '@/app/components/Footer';
 import LinkConverterPage from '@/app/components/LinkConverterPage';
+import LoginModal from '@/app/components/LoginModal';
 
 interface Tool {
   id: string;
@@ -45,7 +47,19 @@ const TOOLS: Tool[] = [
 ];
 
 export default function ToolsPage() {
+  const { isLoggedIn } = useAuth();
   const [selectedTool, setSelectedTool] = useState<string | null>(null);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [selectedToolForAuth, setSelectedToolForAuth] = useState<string>('');
+
+  const handleToolClick = (toolId: string) => {
+    if (!isLoggedIn) {
+      setSelectedToolForAuth(toolId);
+      setShowLoginModal(true);
+      return;
+    }
+    setSelectedTool(toolId);
+  };
 
   if (selectedTool === 'link-converter') {
     return (
@@ -170,7 +184,7 @@ export default function ToolsPage() {
             {TOOLS.map((tool, idx) => (
               <button
                 key={tool.id}
-                onClick={() => setSelectedTool(tool.id)}
+                onClick={() => handleToolClick(tool.id)}
                 className="group cursor-pointer text-left h-full animate-slide-up"
                 style={{ animationDelay: `${idx * 0.1}s` }}
               >
@@ -191,6 +205,11 @@ export default function ToolsPage() {
                         {tool.description}
                       </p>
                     </div>
+                    {!isLoggedIn && (
+                      <div className="text-xs text-green-400/60 font-bold mt-2">
+                        🔒 Login required
+                      </div>
+                    )}
                   </div>
 
                   {/* Arrow indicator */}
@@ -208,6 +227,17 @@ export default function ToolsPage() {
       </div>
 
       <Footer />
+
+      <LoginModal
+        isOpen={showLoginModal}
+        onClose={() => {
+          setShowLoginModal(false);
+          if (isLoggedIn) {
+            setSelectedTool(selectedToolForAuth);
+          }
+        }}
+        toolName={TOOLS.find(t => t.id === selectedToolForAuth)?.name || 'Tool'}
+      />
     </main>
   );
 }

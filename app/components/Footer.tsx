@@ -15,7 +15,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12 pb-12 border-b border-white/10">
           <div className="animate-slide-up">
             <h3 className="text-2xl font-black mb-3">
-              Rep<span className="gradient-text">Mania</span>
+              Nexa<span className="gradient-text">Finds</span>
             </h3>
             <p className="text-gray-400 max-w-xs">
               Your platform for discovering curated products from global marketplaces with quality assurance.

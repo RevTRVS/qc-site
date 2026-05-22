@@ -2,6 +2,8 @@ import "./globals.css";
 import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import { AuthProvider } from "@/app/context/AuthContext";
 import { ThemeProvider } from "@/app/context/ThemeContext";
+import { ToastProvider } from "@/app/context/ToastContext";
+import LocaleSetter from "@/app/components/LocaleSetter";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -27,9 +29,12 @@ export default function RootLayout({
       </head>
       <body className={`${outfit.variable} ${jakarta.variable}`}>
         <ThemeProvider>
-          <AuthProvider>
-            {children}
-          </AuthProvider>
+          <ToastProvider>
+            <AuthProvider>
+              <LocaleSetter />
+              {children}
+            </AuthProvider>
+          </ToastProvider>
         </ThemeProvider>
       </body>
     </html>
