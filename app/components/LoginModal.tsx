@@ -13,7 +13,6 @@ interface LoginModalProps {
 declare global {
   interface Window {
     google?: any;
-    location?: any;
   }
 }
 
