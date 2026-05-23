@@ -13,21 +13,21 @@ interface Banner {
 const BANNERS: Banner[] = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1200&h=400&fit=crop",
-    title: "New Arrivals",
+    image: "blob:https://imgur.com/2361cacc-561b-43e6-96d6-9407eca6f588",
+    title: "NexaFinds",
     description: "Check out the latest trending products",
     link: "/products",
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=1200&h=400&fit=crop",
+    image: "blob:https://imgur.com/0b523063-6eb4-4989-a316-85ac13252087",
     title: "Summer Collection",
     description: "Hot deals on summer essentials",
     link: "/products",
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1200&h=400&fit=crop",
+    image: "https://imgur.com/a/KL5CZTj",
     title: "Flash Sale",
     description: "Limited time offers you won't want to miss",
     link: "/products",
@@ -43,7 +43,7 @@ export default function PromoCarousel() {
 
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % BANNERS.length);
-    }, 5000); // Change every 5 seconds
+    }, 4000); // Change every 4 seconds
 
     return () => clearInterval(interval);
   }, [autoPlay]);
@@ -51,23 +51,23 @@ export default function PromoCarousel() {
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
     setAutoPlay(false);
-    setTimeout(() => setAutoPlay(true), 10000); // Resume after 10s
+    setTimeout(() => setAutoPlay(true), 8000);
   };
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev - 1 + BANNERS.length) % BANNERS.length);
     setAutoPlay(false);
-    setTimeout(() => setAutoPlay(true), 10000);
+    setTimeout(() => setAutoPlay(true), 8000);
   };
 
   const goToNext = () => {
     setCurrentIndex((prev) => (prev + 1) % BANNERS.length);
     setAutoPlay(false);
-    setTimeout(() => setAutoPlay(true), 10000);
+    setTimeout(() => setAutoPlay(true), 8000);
   };
 
   return (
-    <section className="relative w-full h-96 bg-black overflow-hidden rounded-2xl">
+    <section className="relative w-full h-56 bg-black overflow-hidden rounded-3xl">
       {/* Carousel Container */}
       <div className="relative w-full h-full">
         {BANNERS.map((banner, index) => (
@@ -112,10 +112,10 @@ export default function PromoCarousel() {
       {/* Previous Button */}
       <button
         onClick={goToPrevious}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+        className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full transition-all duration-300 hover:scale-110"
         aria-label="Previous slide"
       >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
         </svg>
       </button>
@@ -123,23 +123,23 @@ export default function PromoCarousel() {
       {/* Next Button */}
       <button
         onClick={goToNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+        className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full transition-all duration-300 hover:scale-110"
         aria-label="Next slide"
       >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
         </svg>
       </button>
 
       {/* Dots Navigation */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 flex gap-2">
         {BANNERS.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
               index === currentIndex
-                ? "bg-white w-8"
+                ? "bg-white w-6"
                 : "bg-white/50 hover:bg-white/70"
             }`}
             aria-label={`Go to slide ${index + 1}`}

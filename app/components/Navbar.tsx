@@ -25,20 +25,15 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
         <Link href="/" className="group">
-          {/* Logo */}
-          <div className="flex items-center gap-2">
-            <Image 
-              src="/NexaFindsLogo.png" 
-              alt="NexaFinds Logo" 
-              width={40} 
-              height={40}
-              className="transition-all duration-300 hover:scale-105"
-              priority
-            />
-            <h1 className="text-2xl font-black transition-all duration-300 hover:scale-105 hidden sm:block text-white">
-              Nexa<span className="gradient-text">Finds</span>
-            </h1>
-          </div>
+          {/* Logo - Large */}
+          <Image 
+            src="/NexaFindsLogo.png" 
+            alt="NexaFinds Logo" 
+            width={90} 
+            height={90}
+            className="transition-all duration-300 hover:scale-110"
+            priority
+          />
         </Link>
 
         <nav className="hidden md:flex gap-4">
