@@ -29,8 +29,8 @@ export default function Navbar() {
           <Image 
             src="/NexaFindsLogo.png" 
             alt="NexaFinds Logo" 
-            width={90} 
-            height={90}
+            width={200} 
+            height={200}
             className="transition-all duration-300 hover:scale-110"
             priority
           />
@@ -40,6 +40,7 @@ export default function Navbar() {
           {[
             { label: "Home", href: "/" },
             { label: "Products", href: "/products" },
+            { label: "Spreadsheets", href: "/spreadsheets" },
             { label: "Tools", href: "/tools" },
             { label: "FAQ", href: "#" },
             { label: "Best Sellers", href: "/sellers" },

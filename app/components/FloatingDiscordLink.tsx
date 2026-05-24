@@ -10,7 +10,7 @@ export default function FloatingDiscordLink() {
       <img 
         src="/DiscordLogo.png.png" 
         alt="Discord" 
-        className="w-20 h-20 transition-transform group-hover:rotate-12 drop-shadow-lg"
+        className="w-20 h-20 transition-transform group-hover:rotate-12 drop-shadow-lg rounded-full"
       />
     </a>
   );

@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { Product } from "@/app/types";
 
 interface ProductCardProps {
@@ -5,6 +8,23 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const [views, setViews] = useState(product.views || 0);
+
+  const handleViewClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setViews(views + 1);
+  };
+
+  const getCurrencySymbol = (currency: string) => {
+    const symbols: { [key: string]: string } = {
+      "€": "€",
+      "$": "$",
+      "¥": "¥",
+      "CNY": "¥",
+    };
+    return symbols[currency] || currency;
+  };
+
   return (
     <div className="group rounded-2xl overflow-hidden border-2 border-green-500/30 hover:border-green-400 transition-all duration-500 hover:shadow-2xl hover:shadow-green-500/30 hover:scale-105 glow-box animate-slide-up relative">
       {/* Glowing background on hover */}
@@ -28,6 +48,15 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className="absolute top-3 right-3 bg-gradient-to-r from-green-500 to-emerald-500 text-black px-3 py-1 rounded-full text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           ⭐ Featured
         </div>
+
+        {/* Eye icon with view count */}
+        <button
+          onClick={handleViewClick}
+          className="absolute bottom-3 right-3 flex items-center gap-2 bg-black/70 hover:bg-black/90 px-3 py-1.5 rounded-full transition-all duration-300 hover:scale-110 active:scale-95 border border-green-500/50 hover:border-green-400"
+        >
+          <span className="text-lg">👁️</span>
+          <span className="text-xs font-bold text-white">{views}</span>
+        </button>
       </div>
 
       {/* Content */}
@@ -37,7 +66,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             {product.name}
           </h3>
           <p className="bg-gradient-to-r from-green-400 via-emerald-400 to-green-500 bg-clip-text text-transparent font-bold text-2xl">
-            {product.currency}
+            {getCurrencySymbol(product.currency)}
             {product.price}
           </p>
           {product.seller && (

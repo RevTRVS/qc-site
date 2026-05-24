@@ -17,6 +17,7 @@ const FEATURED_PRODUCTS: Product[] = [
     seller: "Taobao",
     image: "https://i.imgur.com/y7oLysb.png",  // ← URL da imagem
     link: "https://weidian.com/item.html?itemID=7733312382",            // ← Link clicável
+    views: 1234,
   },
   {
     id: 2,
@@ -26,6 +27,7 @@ const FEATURED_PRODUCTS: Product[] = [
     seller: "Taobao",
     image: "https://i.imgur.com/nN2bNOm.png",  // ← URL da imagem
     link: "https://weidian.com/item.html?itemID=7733312382",            // ← Link clicável
+    views: 5678,
   },
     {
     id: 3,
@@ -35,6 +37,7 @@ const FEATURED_PRODUCTS: Product[] = [
     seller: "Taobao",
     image: "https://i.imgur.com/rg4dWU4.png",  // ← URL da imagem
     link: "https://weidian.com/item.html?itemID=7733312382",            // ← Link clicável
+    views: 892,
   },
 
   {
@@ -43,8 +46,9 @@ const FEATURED_PRODUCTS: Product[] = [
     price: 8.64,
     currency: "€",
     seller: "Taobao",
-    image: "https://i.imgur.com/TNtodHy.png",  // ← URL da imagem
+    image: "",  // ← URL da imagem
     link: "https://weidian.com/item.html?itemID=7733312382",            // ← Link clicável
+    views: 456,
   },
   {
     id: 6,
@@ -52,6 +56,7 @@ const FEATURED_PRODUCTS: Product[] = [
     price: 22,
     currency: "€",
     seller: "Agent",
+    views: 2341,
   },
   {
     id: 7,
@@ -59,6 +64,7 @@ const FEATURED_PRODUCTS: Product[] = [
     price: 28,
     currency: "€",
     seller: "Taobao",
+    views: 1567,
   },
   {
     id: 8,
@@ -66,6 +72,17 @@ const FEATURED_PRODUCTS: Product[] = [
     price: 42,
     currency: "€",
     seller: "Weidian",
+    views: 3421,
+  },
+  {
+    id: 9,
+    name: "Premium Watch",
+    price: 199,
+    currency: "CNY",
+    seller: "Taobao",
+    image: "https://i.imgur.com/nN2bNOm.png",
+    link: "https://taobao.com/item.html",
+    views: 2891,
   },
 ];
 
@@ -114,12 +131,6 @@ export default function Home() {
           <div className="relative">
             {/* Left Side - Logo & Content */}
             <div className="relative z-10 pt-20">
-              <div className="inline-block mb-4 px-4 py-2 bg-green-500/20 rounded-full border border-green-500/40 backdrop-blur animate-slide-up">
-                <span className="text-xs font-bold text-green-400 uppercase tracking-wider">
-                  ✨ Welcome
-                </span>
-              </div>
-
               {/* Large Logo */}
               <div className="mb-8 animate-slide-up" style={{ animationDelay: "0.05s" }}>
                 <img 

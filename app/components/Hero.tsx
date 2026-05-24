@@ -5,12 +5,6 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* Left Side - Logo & Content */}
           <div className="relative z-10">
-            <div className="inline-block mb-4 px-4 py-2 bg-green-500/20 rounded-full border border-green-500/40 backdrop-blur animate-slide-up">
-              <span className="text-xs font-bold text-green-400 uppercase tracking-wider">
-                ✨ Welcome
-              </span>
-            </div>
-
             {/* Large Logo */}
             <div className="mb-8 animate-slide-up" style={{ animationDelay: "0.05s" }}>
               <img 
